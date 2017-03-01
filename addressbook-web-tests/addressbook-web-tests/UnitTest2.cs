@@ -43,20 +43,24 @@ namespace SeleniumTests
         public void TheUntitledTest()
         {
             driver.Navigate().GoToUrl(baseURL + "addressbook/");
+            driver.FindElement(By.Name("user")).Clear();
+            driver.FindElement(By.Name("user")).SendKeys("admin");
+            driver.FindElement(By.Name("pass")).Clear();
+            driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
             driver.FindElement(By.LinkText("groups")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
             driver.FindElement(By.Name("new")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys("a");
+            driver.FindElement(By.Name("group_name")).SendKeys("q");
             driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys("a");
+            driver.FindElement(By.Name("group_header")).SendKeys("q");
             driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys("a");
+            driver.FindElement(By.Name("group_footer")).SendKeys("q");
             driver.FindElement(By.Name("submit")).Click();
             driver.FindElement(By.LinkText("group page")).Click();
             driver.FindElement(By.LinkText("Logout")).Click();
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
         }
         private bool IsElementPresent(By by)
         {
