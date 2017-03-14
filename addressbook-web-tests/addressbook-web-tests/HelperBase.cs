@@ -7,10 +7,10 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace aWebAddressbookTests
+namespace WebAddressbookTests
 {
    
-     class HelperBase
+     public class HelperBase
     {
         protected IWebDriver driver;
 
