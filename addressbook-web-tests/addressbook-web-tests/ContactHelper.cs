@@ -25,20 +25,25 @@ namespace WebAddressbookTests
 
         public void FillContactForm(ContactData contact)
         {//заполнение формы данными
-
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Finame);
         }
 
-
-
         public void SubmitContactCreation()
         {//Подтверждение
-            driver.FindElement(By.Name("submit")).Click();
-            
+            driver.FindElement(By.Name("submit")).Click();           
         }
 
-        
-        
+        public void SelectContact(int index)
+        {// выбор контакта
+            driver.FindElement(By.Id(""+index+"")).Click();
+        }
+
+        public void RemoveContact()
+        {// удаление контакта
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+          //  Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+
+        }
     }
 }
