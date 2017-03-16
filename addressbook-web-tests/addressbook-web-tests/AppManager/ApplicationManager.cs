@@ -66,7 +66,7 @@ namespace WebAddressbookTests
             }
         }
 
-        public GroupHelper Contacts
+        public ContactHelper Contacts
         {
             get
             {

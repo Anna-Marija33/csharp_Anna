@@ -15,11 +15,13 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreations()
         {
-            app.Navigator.GoToHomePage();
+            app.Navigator.OpenHomePage();
             app.Auth.Login(new WebAddressbookTests.AccountData("admin", "secret"));
-      //      app.
-
-
-       }
+            app.Contacts.CreateNewContact();
+            ContactData contact = new ContactData("Ogo-go");
+            app.Contacts.FillContactForm(contact);
+            app.Contacts.SubmitContactCreation();
+            
+        }
     }
 }

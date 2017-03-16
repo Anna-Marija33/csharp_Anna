@@ -23,16 +23,16 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("add new")).Click();
         }
 
-        public void ContactCreationTest(ContactData contact)
+        public void FillContactForm(ContactData contact)
         {//заполнение формы данными
 
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Finame);
         }
 
-      
 
-        private void SubmitContactCreation()
+
+        public void SubmitContactCreation()
         {//Подтверждение
             driver.FindElement(By.Name("submit")).Click();
             
