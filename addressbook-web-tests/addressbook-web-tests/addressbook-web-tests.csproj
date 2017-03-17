@@ -65,25 +65,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ContactCreationTests.cs" />
-    <Compile Include="ContactHelper.cs" />
-    <Compile Include="ContactRemoval.cs" />
+    <Compile Include="Tests\ContactCreationTests.cs" />
+    <Compile Include="AppManager\ContactHelper.cs" />
+    <Compile Include="Tests\ContactRemoval.cs" />
     <Compile Include="Model\AccountData.cs" />
     <Compile Include="AppManager\ApplicationManager.cs" />
-    <Compile Include="Circle.cs" />
-    <Compile Include="ContactData.cs" />
-    <Compile Include="Figure.cs" />
+    <Compile Include="Model\ContactData.cs" />
     <Compile Include="Model\GroupData.cs" />
     <Compile Include="AppManager\GroupHelper.cs" />
     <Compile Include="Tests\GroupRemovalTests.cs" />
     <Compile Include="AppManager\LoginHelper.cs" />
     <Compile Include="AppManager\NavigationHelper.cs" />
-    <Compile Include="Square.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="AppManager\HelperBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\GroupCreationTests.cs" />
-    <Compile Include="ContactCreationTests11.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram5.cd" />

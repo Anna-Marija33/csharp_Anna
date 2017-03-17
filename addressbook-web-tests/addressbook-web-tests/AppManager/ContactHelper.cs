@@ -7,6 +7,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
+using System.Text.RegularExpressions;
+using System.Threading;
+using NUnit.Framework;
+
+
+
 
 namespace WebAddressbookTests
 {
@@ -36,14 +42,19 @@ namespace WebAddressbookTests
 
         public void SelectContact(int index)
         {// выбор контакта
-            driver.FindElement(By.Id(""+index+"")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index +"]")).Click(); //Переведено на параметр
         }
 
         public void RemoveContact()
         {// удаление контакта
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-          //  Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.SwitchTo().Alert().Accept(); //закрытие диалогового окна
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+        }
+
+
+
+
 
         }
     }
-}
