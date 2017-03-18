@@ -17,10 +17,11 @@ namespace WebAddressbookTests
         {
             app.Navigator.OpenHomePage();
             app.Auth.Login(new WebAddressbookTests.AccountData("admin", "secret"));
-            app.Contacts.CreateNewContact();
             ContactData contact = new ContactData("Ogo-go");
-            app.Contacts.FillContactForm(contact);
-            app.Contacts.SubmitContactCreation();
+            app.Contacts
+                .CreateNewContact()
+                .FillContactForm(contact)
+                .SubmitContactCreation();
             
         }
     }

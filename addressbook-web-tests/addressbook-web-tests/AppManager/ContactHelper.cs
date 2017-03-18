@@ -19,37 +19,42 @@ namespace WebAddressbookTests
     public class ContactHelper : HelperBase
     {
 
-        public ContactHelper(IWebDriver driver) : base(driver)
+        public ContactHelper(ApplicationManager manager) : base(manager)
         {
             this.driver = driver;
         }
 
-        public void CreateNewContact()
+        public ContactHelper CreateNewContact()
         {//Создание новго контакта
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
 
-        public void FillContactForm(ContactData contact)
+        public ContactHelper FillContactForm(ContactData contact)
         {//заполнение формы данными
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Finame);
+            return this;
         }
 
-        public void SubmitContactCreation()
+        public ContactHelper SubmitContactCreation()
         {//Подтверждение
-            driver.FindElement(By.Name("submit")).Click();           
+            driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
 
-        public void SelectContact(int index)
+        public ContactHelper SelectContact(int index)
         {// выбор контакта
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index +"]")).Click(); //Переведено на параметр
+            return this;
         }
 
-        public void RemoveContact()
+        public ContactHelper RemoveContact()
         {// удаление контакта
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             driver.SwitchTo().Alert().Accept(); //закрытие диалогового окна
             //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            return this;
         }
 
 

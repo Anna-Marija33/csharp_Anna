@@ -15,8 +15,9 @@ namespace WebAddressbookTests
         {
             app.Navigator.OpenHomePage();
             app.Auth.Login(new AccountData("admin", "secret"));
-            app.Contacts.SelectContact(1);
-            app.Contacts.RemoveContact();
+            app.Contacts
+                .SelectContact(1)
+                .RemoveContact();
         }
         
 
