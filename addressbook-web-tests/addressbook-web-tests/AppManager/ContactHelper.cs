@@ -21,11 +21,39 @@ namespace WebAddressbookTests
 
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
-            this.driver = driver;
+
         }
 
+        public ContactHelper CreateCont(ContactData contact)
+        {
+            manager.Navigator.OpenHomePage();
+            CreateNewContact();
+            FillContactForm(contact);
+            SubmitContactCreation();
+            return this;
+        }
+
+        public ContactHelper ModifyCon(int p, ContactData contact)
+        {
+            manager.Navigator.OpenHomePage();
+            //SelectContact(p);
+            InitContactModification(p);
+            FillContactForm(contact);
+            SubmitContactModification(p);
+            return this;
+        }
+
+        public ContactHelper Removal(int p)
+        {
+            manager.Navigator.OpenHomePage();
+            SelectContact(p);
+            RemoveContact();
+            return this;
+        }
+
+
         public ContactHelper CreateNewContact()
-        {//Создание новго контакта
+        {//Создание нового контакта
             driver.FindElement(By.LinkText("add new")).Click();
             return this;
         }
@@ -57,9 +85,17 @@ namespace WebAddressbookTests
             return this;
         }
 
-
-
-
-
+        public ContactHelper InitContactModification(int index)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
+            return this;
         }
+
+        public ContactHelper SubmitContactModification(int index)
+        {
+            driver.FindElement(By.XPath("(//input[@name='update'])[" + index + "]")).Click();
+            return this;
+        }
+
     }
+}

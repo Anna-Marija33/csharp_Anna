@@ -65,9 +65,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Tests\ContactModificationTests.cs" />
+    <Compile Include="Tests\GroupModificationTests.cs" />
     <Compile Include="Tests\ContactCreationTests.cs" />
     <Compile Include="AppManager\ContactHelper.cs" />
-    <Compile Include="Tests\ContactRemoval.cs" />
+    <Compile Include="Tests\ContactRemovaTestsl.cs" />
     <Compile Include="Model\AccountData.cs" />
     <Compile Include="AppManager\ApplicationManager.cs" />
     <Compile Include="Model\ContactData.cs" />

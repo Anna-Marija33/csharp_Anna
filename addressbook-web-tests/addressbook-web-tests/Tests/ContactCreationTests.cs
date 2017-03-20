@@ -10,19 +10,24 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactCreation: TestBase
+    public class ContactCreationTests: TestBase
     {
         [Test]
-        public void ContactCreations()
+        public void ContactCreationTest()
         {
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new WebAddressbookTests.AccountData("admin", "secret"));
-            ContactData contact = new ContactData("Ogo-go");
-            app.Contacts
-                .CreateNewContact()
-                .FillContactForm(contact)
-                .SubmitContactCreation();
-            
+            ContactData contact = new ContactData("Ege-ge");
+
+            app.Contacts.CreateCont(contact);
         }
+
+        [Test]
+        public void EmptyContactCreationTest()
+        {
+            ContactData contact = new ContactData("");
+
+            app.Contacts.CreateCont(contact);
+        }
+
+
     }
 }
