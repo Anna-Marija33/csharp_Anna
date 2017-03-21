@@ -8,12 +8,12 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests: TestBase
+    public class ContactModificationTests: AuthTestBase
     {
         [Test]
         public void ContactModificationTest()
         {
-            ContactData contact = new ContactData("Igo-go");
+            ContactData contact = new ContactData("Igo-go-go");
             
             app.Contacts.ModifyCon(1, contact);
 
