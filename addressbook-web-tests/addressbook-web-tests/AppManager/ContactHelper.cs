@@ -7,9 +7,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-using System.Text.RegularExpressions;
-using System.Threading;
-using NUnit.Framework;
 
 
 
@@ -49,6 +46,19 @@ namespace WebAddressbookTests
             SelectContact(p);
             RemoveContact();
             return this;
+        }
+
+        public bool IsElementPresent(By by)
+        {
+            try
+            {
+                driver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
 
 

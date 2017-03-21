@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
@@ -13,9 +16,15 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            ContactData contact = new ContactData("Igo-go-go");
+
+            if (!app.Contacts.IsElementPresent(By.Name("selected[]")))
+            {
+                ContactData contact = new ContactData("aga");
+                app.Contacts.CreateCont(contact);
+            }
+            ContactData contacta = new ContactData("Igo-go-go");
             
-            app.Contacts.ModifyCon(1, contact);
+            app.Contacts.ModifyCon(1, contacta);
 
         }
     }
