@@ -23,7 +23,7 @@ namespace WebAddressbookTests
 
         public ContactHelper CreateCont(ContactData contact)
         {
-            manager.Navigator.OpenHomePage();
+            manager.Navigator.GoToHomePage();
             CreateNewContact();
             FillContactForm(contact);
             SubmitContactCreation();
@@ -32,8 +32,7 @@ namespace WebAddressbookTests
 
         public ContactHelper ModifyCon(int p, ContactData contact)
         {
-            manager.Navigator.OpenHomePage();
-            //SelectContact(p);
+            manager.Navigator.GoToHomePage();
             InitContactModification(p);
             FillContactForm(contact);
             SubmitContactModification(p);
@@ -48,19 +47,21 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public bool IsElementPresent(By by)
+        public void Analis()
         {
-            try
+            if (!Nalichie())
             {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
+                ContactData contact = new ContactData("ugu");
+                CreateCont(contact);
             }
         }
 
+        public bool Nalichie()
+        {
+            return IsElementPresent(By.Name("selected[]"));
+         }
+
+       
 
         public ContactHelper CreateNewContact()
         {//Создание нового контакта

@@ -19,15 +19,11 @@ namespace WebAddressbookTests
         [Test]
         public void GRoupRemovalTest()
         {
-            if (!app.Groups.IsElementPresent(By.Name("selected[]")))
-            {
-                GroupData group = new GroupData("grrr");
-                group.Header = "";
-                group.Footer = "";
 
-                app.Groups.Create(group);
-            }
-
+            //Проверить наличие групп если нет то создать
+            app.Groups.Proverka();
+            
+            //удалить группу
             app.Groups.Remove(1);
  
         }

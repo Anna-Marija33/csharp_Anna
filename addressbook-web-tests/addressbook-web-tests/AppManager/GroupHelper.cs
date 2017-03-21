@@ -41,7 +41,23 @@ namespace WebAddressbookTests
             return this;
         }
 
-       
+        public void Proverka()
+        {
+            if (!NalichieGR())
+            {
+                GroupData group = new GroupData("grrr");
+                group.Header = "";
+                group.Footer = "";
+
+                Create(group);
+            }
+        }
+
+        public bool NalichieGR()
+        {
+            return IsElementPresent(By.Name("selected[]"));
+        }
+
 
         public GroupHelper Remove(int p)
         {
