@@ -15,7 +15,7 @@ namespace WebAddressbookTests
         public void GroupModificationTest()
         {
             //Проверить наличие групп если нет то создать
-      //      app.Groups.Proverka();
+     //      app.Groups.Proverka();
 
            //Модификация группы
             GroupData newData = new GroupData("zzz");
