@@ -28,7 +28,25 @@ namespace WebAddressbookTests
             ReturnToGroupsPage(); 
             return this;
         }
-            
+
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();  //готовим пустой список
+            //теперь нужно заполнить список данными
+            manager.Navigator.GoToGroupsPage(); //переход на нужную страницу
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group")); //означает что нас интересуют элеменгты с тэгом спан класс гроуп
+            //Теперь мы должны эти элементы, это объекты типа айвебэлемент, превратит в нужные нам элементы типа групдейт
+            foreach (IWebElement element in elements) // для каждого элемента такой то коллекции нужно выполнить ннечто
+            {
+                // GroupData group = new GroupData(element.Text); // создали объект
+                // groups.Add(group);  //поместили
+                // То же без промежуточного элемента
+                groups.Add(new GroupData(element.Text)); //Итого: читаем элементы с вебстраницы, преобразовываем их в нужные нам объекты типа гроупдейт
+            }
+
+            return groups;
+        }
+
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
@@ -106,7 +124,7 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             return this;
         }
 
