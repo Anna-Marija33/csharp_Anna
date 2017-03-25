@@ -39,6 +39,21 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("td.center"));
+            //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+
+            return contacts;
+        }
+
         public ContactHelper Removal(int p)
         {
             manager.Navigator.OpenHomePage();
@@ -72,8 +87,13 @@ namespace WebAddressbookTests
         public ContactHelper FillContactForm(ContactData contact)
         {//заполнение формы данными
             Type(By.Name("firstname"), contact.Firstname);
-      //      Type(By.Name("middlename"), contact.Middlname);
-            
+          //  Type(By.Name("middlename"), contact.Middlname);
+           Type(By.Name("lastname"), contact.Lastname);
+         //   Type(By.Name("nickname"), contact.Nickname);
+         //   Type(By.Name("address"), contact.Address);
+         //   Type(By.Name("home"), contact.Home);
+         //   Type(By.Name("email"), contact.Email);
+
             return this;
         }
 
@@ -85,15 +105,14 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {// выбор контакта
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index +"]")).Click(); //Переведено на параметр
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) +"]")).Click(); //Переведено на параметр
             return this;
         }
 
         public ContactHelper RemoveContact()
         {// удаление контакта
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            driver.SwitchTo().Alert().Accept(); //закрытие диалогового окна
-            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.SwitchTo().Alert().Accept(); 
             return this;
         }
 

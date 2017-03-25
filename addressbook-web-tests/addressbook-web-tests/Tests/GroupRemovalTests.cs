@@ -22,7 +22,7 @@ namespace WebAddressbookTests
         {
 
             //Проверить наличие групп если нет то создать
-            // app.Groups.Proverka();
+             app.Groups.Proverka();
 
             
 

@@ -19,8 +19,9 @@ namespace WebAddressbookTests
            app.Contacts.Analis();
            
             ///модифицировать запись
-            ContactData contacta = new ContactData("Igo-go-go");         
-            app.Contacts.ModifyCon(1, contacta);
+            ContactData contacta = new ContactData("Igo-go-go");    
+                 
+            app.Contacts.ModifyCon(0, contacta);
 
         }
     }
