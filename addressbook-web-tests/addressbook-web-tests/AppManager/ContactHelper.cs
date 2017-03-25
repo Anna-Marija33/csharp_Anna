@@ -71,9 +71,9 @@ namespace WebAddressbookTests
 
         public ContactHelper FillContactForm(ContactData contact)
         {//заполнение формы данными
-            Type(By.Name("firstname"), contact.Finame);
-           // driver.FindElement(By.Name("firstname")).Clear();
-            //driver.FindElement(By.Name("firstname")).SendKeys(contact.Finame);
+            Type(By.Name("firstname"), contact.Firstname);
+      //      Type(By.Name("middlename"), contact.Middlname);
+            
             return this;
         }
 

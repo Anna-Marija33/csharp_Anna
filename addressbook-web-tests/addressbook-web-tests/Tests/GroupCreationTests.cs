@@ -25,6 +25,8 @@ namespace WebAddressbookTests
 
             app.Groups.Create(group);
 
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();// контейнер или коллекция то есть объект который хранит набор других объектов
             //groups.Count //количество элементов в этом списке
             oldGroups.Add(group);
@@ -44,11 +46,15 @@ namespace WebAddressbookTests
 
             app.Groups.Create(group);
 
+           
+            Assert.AreEqual(oldGroups.Count+1, app.Groups.GetGroupCount());
+
+
             List<GroupData> newGroups = app.Groups.GetGroupList();// контейнер или коллекция то есть объект который хранит набор других объектов
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            Assert.AreEqual(oldGroups, newGroups);
 
         }
 
@@ -64,11 +70,13 @@ namespace WebAddressbookTests
 
             app.Groups.Create(group);
 
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();// контейнер или коллекция то есть объект который хранит набор других объектов
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            Assert.AreEqual(oldGroups, newGroups);
 
         }
 

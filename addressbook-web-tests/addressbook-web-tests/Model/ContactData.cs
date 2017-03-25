@@ -8,27 +8,18 @@ namespace WebAddressbookTests
 {
     public class ContactData
     {
-        private string finame;
-       
+        private string firstname;
+  //      private string middlname;
 
-        public ContactData(string finame)
+
+        public ContactData(string firstname)
         {
-            this.finame = finame;
+            this.firstname = firstname;
         }
 
 
-        public string Finame
-        {
-            get
-            {
-                return finame;
-            }
-            set
-            {
-                finame = value;
-            }
-        }
+        public string Firstname { get; set; }
 
-       
+      //  public string Middlname { get; set; }
     }
 }
