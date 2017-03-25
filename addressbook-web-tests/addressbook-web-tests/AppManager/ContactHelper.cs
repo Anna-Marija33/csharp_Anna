@@ -43,12 +43,16 @@ namespace WebAddressbookTests
         {
             List<ContactData> contacts = new List<ContactData>();
             manager.Navigator.GoToHomePage();
-            //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("td.center"));
-            //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+           
             ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text));
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                string firstname = cells[2].Text;      
+                contacts.Add(new ContactData(firstname));
+               
+                
             }
 
             return contacts;
