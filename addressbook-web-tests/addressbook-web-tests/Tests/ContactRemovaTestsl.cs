@@ -19,9 +19,11 @@ namespace WebAddressbookTests
             // выяснить есть ли запись если нету то создать
             app.Contacts.Analis();
 
+            
             List<ContactData> oldcont = app.Contacts.GetContactList();
             //удалить запись
             app.Contacts.Removal(0);
+            Assert.AreEqual(oldcont.Count - 1, app.Contacts.GetContactCount());
 
             List<ContactData> newcont = app.Contacts.GetContactList();
             oldcont.RemoveAt(0);

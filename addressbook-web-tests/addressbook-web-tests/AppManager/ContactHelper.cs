@@ -39,23 +39,34 @@ namespace WebAddressbookTests
             return this;
         }
 
+        private List<ContactData> contactCache = null;
+
         public List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
-           
-            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-            
-            foreach (IWebElement element in elements)
+            if (contactCache == null)
             {
-                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                string firstname = cells[2].Text;      
-                contacts.Add(new ContactData(firstname));
-               
-                
-            }
+                contactCache = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
 
-            return contacts;
+                foreach (IWebElement element in elements)
+                {
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                    string firstname = cells[2].Text;
+                    contactCache.Add(new ContactData(firstname));
+                }
+            }
+            
+            return new List < ContactData >(contactCache);
+        }
+
+        public int GetContactCount()
+        {
+            //return driver.FindElements(By.Name("entry")).Count;
+            //return driver.FindElements(By.CssSelector("odd.entry")).Count;
+            //return driver.FindElements(By.TagName("td")).Count;
+            return driver.FindElements(By.ClassName("center")).Count;
+
         }
 
         public ContactHelper Removal(int p)
@@ -91,12 +102,12 @@ namespace WebAddressbookTests
         public ContactHelper FillContactForm(ContactData contact)
         {//заполнение формы данными
             Type(By.Name("firstname"), contact.Firstname);
-          //  Type(By.Name("middlename"), contact.Middlname);
+            Type(By.Name("middlename"), contact.Middlname);
            Type(By.Name("lastname"), contact.Lastname);
-         //   Type(By.Name("nickname"), contact.Nickname);
-         //   Type(By.Name("address"), contact.Address);
-         //   Type(By.Name("home"), contact.Home);
-         //   Type(By.Name("email"), contact.Email);
+            Type(By.Name("nickname"), contact.Nickname);
+           Type(By.Name("address"), contact.Address);
+            Type(By.Name("home"), contact.Home);
+            Type(By.Name("email"), contact.Email);
 
             return this;
         }
@@ -104,6 +115,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {//Подтверждение
             driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -116,19 +128,21 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {// удаление контакта
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            driver.SwitchTo().Alert().Accept(); 
+            driver.SwitchTo().Alert().Accept();
+            contactCache = null;
             return this;
         }
 
         public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (index + 1) + "]")).Click();
             return this;
         }
 
         public ContactHelper SubmitContactModification(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='update'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='update'])[" + (index + 1) + "]")).Click();
+            contactCache = null;
             return this;
         }
 
