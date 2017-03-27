@@ -52,8 +52,12 @@ namespace WebAddressbookTests
                 foreach (IWebElement element in elements)
                 {
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                    string firstname = cells[2].Text;
-                    contactCache.Add(new ContactData(firstname));
+                     string firstname = cells[2].Text;
+                    // string id = cells[1].Text;
+                    //contactCache.Add(new ContactData(firstname));
+                    //contactCache.Add(new ContactData(firstname) {Id=id }); 
+                    contactCache.Add(new ContactData(firstname) { Id = element.FindElement(By.TagName("input")).GetAttribute("id") });
+                    //contactCache.Add(new ContactData (element.Text) { Id = element.FindElement(By.TagName("input")).GetAttribute("id") });
                 }
             }
             
@@ -62,12 +66,9 @@ namespace WebAddressbookTests
 
         public int GetContactCount()
         {
-            //return driver.FindElements(By.Name("entry")).Count;
-            //return driver.FindElements(By.CssSelector("odd.entry")).Count;
-            //return driver.FindElements(By.TagName("td")).Count;
-            return driver.FindElements(By.ClassName("center")).Count;
-
-        }
+            manager.Navigator.OpenHomePage();
+            return driver.FindElements(By.Name("entry")).Count;
+         }
 
         public ContactHelper Removal(int p)
         {

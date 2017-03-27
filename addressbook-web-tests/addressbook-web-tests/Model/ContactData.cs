@@ -17,7 +17,6 @@ namespace WebAddressbookTests
 
 
         public string Firstname { get; set; }
-
         public string Middlname { get; set; }
         public string Lastname { get; set; }
         public string Nickname { get; set; }

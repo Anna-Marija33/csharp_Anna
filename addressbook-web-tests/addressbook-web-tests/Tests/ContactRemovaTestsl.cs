@@ -26,14 +26,21 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldcont.Count - 1, app.Contacts.GetContactCount());
 
             List<ContactData> newcont = app.Contacts.GetContactList();
+            
+
+            ContactData ForRemoving = oldcont[0];
             oldcont.RemoveAt(0);
 
             Assert.AreEqual(oldcont, newcont);
 
+            foreach (ContactData contact in newcont)
+            {
+                Assert.AreNotEqual(contact.Id, ForRemoving.Id);
+            }
+
         }
 
-       
 
-
+        
     }
 }

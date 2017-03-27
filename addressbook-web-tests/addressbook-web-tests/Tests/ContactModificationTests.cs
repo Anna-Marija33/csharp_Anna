@@ -29,17 +29,26 @@ namespace WebAddressbookTests
             contacta.Email = null;
 
             List<ContactData> oldcont = app.Contacts.GetContactList();
+            ContactData oldcontacta = oldcont[0];
 
             app.Contacts.ModifyCon(0, contacta);
 
-           // Assert.AreEqual(oldcont.Count, app.Contacts.GetContactCount());
+            Assert.AreEqual(oldcont.Count, app.Contacts.GetContactCount());
 
             List<ContactData> newcont = app.Contacts.GetContactList();
             oldcont[0].Firstname = contacta.Firstname;
-        //    oldcont[0].Lastname = contacta.Lastname;
+            //oldcont[0].Lastname = contacta.Lastname;
             oldcont.Sort();
             newcont.Sort();
             Assert.AreEqual(oldcont, newcont);
+
+            foreach (ContactData contact in newcont)
+            {
+                if (contact.Id == oldcontacta.Id)
+                    {
+                    Assert.AreEqual(contacta.Firstname,contact.Firstname);
+                }
+            }
         }
     }
 }
