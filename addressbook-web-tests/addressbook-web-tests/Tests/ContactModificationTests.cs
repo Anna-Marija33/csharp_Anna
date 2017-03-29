@@ -19,7 +19,7 @@ namespace WebAddressbookTests
            app.Contacts.Analis();
            
             ///модифицировать запись
-            ContactData contacta = new ContactData("DA");
+            ContactData contacta = new ContactData("DA","NET");
             contacta.Lastname = null;
             contacta.Middlname = null;
             contacta.Lastname = null;
