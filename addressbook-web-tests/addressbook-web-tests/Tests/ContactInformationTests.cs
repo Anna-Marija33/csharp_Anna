@@ -32,7 +32,7 @@ namespace WebAddressbookTests
         public void ContactKartInformation()
         {
             ContactData fromKart = app.Contacts.GetContactInformationFromKart(0);
-            //System.Console.Out.Write("firstname=");
+            System.Console.Out.Write("firstname=");
             //      ContactData fromForm = app.Contacts.GetContacInformationFromEditForm(0);
 
             //      Assert.AreEqual(fromKart, fromForm);
