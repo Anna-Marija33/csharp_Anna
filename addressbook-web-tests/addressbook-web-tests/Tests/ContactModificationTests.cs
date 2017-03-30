@@ -25,7 +25,7 @@ namespace WebAddressbookTests
             contacta.Lastname = null;
             contacta.Nickname = null;
             contacta.Address = null;
-            contacta.Home = null;
+            contacta.HomePhone = null;
             contacta.Email = null;
 
             List<ContactData> oldcont = app.Contacts.GetContactList();

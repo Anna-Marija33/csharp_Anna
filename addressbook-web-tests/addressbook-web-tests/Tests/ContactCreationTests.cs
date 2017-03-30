@@ -18,7 +18,7 @@ namespace WebAddressbookTests
 //            contact.Lastname = "ccc";
             contact.Nickname = "ddd";
             contact.Address = "ggg";
-            contact.Home = "hhhh";
+            contact.HomePhone = "hhhh";
             contact.Email = "eee";
 
             List<ContactData> oldcont = app.Contacts.GetContactList();
@@ -29,13 +29,12 @@ namespace WebAddressbookTests
               Assert.AreEqual(oldcont.Count+1, app.Contacts.GetContactCount());
 
               List<ContactData> newcont = app.Contacts.GetContactList();
-           // int kol1 = oldcont.Count;
-          //  int kol2 = newcont.Count; ;
-          //  System.Console.Out.Write(" kol1= " + kol1+"  kol2=  " + kol2);
-                      oldcont.Add(contact);
+           // System.Console.Out.Write("=");
+
+                     oldcont.Add(contact);
                        oldcont.Sort();
                       newcont.Sort();
-                      Assert.AreEqual(oldcont, newcont);
+                     Assert.AreEqual(oldcont, newcont);
         }
 
         [Test]

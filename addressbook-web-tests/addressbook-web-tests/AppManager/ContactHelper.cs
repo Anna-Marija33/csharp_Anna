@@ -43,6 +43,8 @@ namespace WebAddressbookTests
             return this;
         }
 
+       
+
         private List<ContactData> contactCache = null;
 
         public List<ContactData> GetContactList()
@@ -57,7 +59,7 @@ namespace WebAddressbookTests
                 {
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
                      string firstname = cells[2].Text;
-                    string lastname = cells[1].Text;
+                     string lastname = cells[1].Text;
                     // string id = cells[1].Text;
                     //contactCache.Add(new ContactData(firstname));
                     //contactCache.Add(new ContactData(firstname) {Id=id }); 
@@ -112,7 +114,7 @@ namespace WebAddressbookTests
            Type(By.Name("lastname"), contact.Lastname);
             Type(By.Name("nickname"), contact.Nickname);
            Type(By.Name("address"), contact.Address);
-            Type(By.Name("home"), contact.Home);
+            Type(By.Name("home"), contact.HomePhone);
             Type(By.Name("email"), contact.Email);
 
             return this;
@@ -153,6 +155,14 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper InitContactModificationnn(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index].
+                FindElements(By.TagName("td"))[6].
+                FindElement(By.TagName("a")).Click();
+            return this;
+        }
+
         public ContactHelper SubmitContactModification(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='update'])[" + (index + 1) + "]")).Click();
@@ -170,34 +180,88 @@ namespace WebAddressbookTests
             string firstName = cells[2].Text;
             string address = cells[3].Text;
             string allPhones = cells[5].Text;
+            string allEmails = cells[4].Text;
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
                 AllPhones = allPhones,
+                AllEmails = allEmails
                
             };
 
         }
 
 
+
+        public ContactData GetContactInformationFromKart(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModificationnn(0);
+            ContactData aaa = new  ContactData("aaa", "ccc");
+
+            //string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            // string nickName = driver.FindElement(By.Name("nickname")).GetAttribute("value");
+            //string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            //System.Console.Out.Write("firstname="+firstName);
+            //  string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+            //  string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            //  string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            //  string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            //  string home = driver.FindElement(By.Name("phone2")).GetAttribute("value");
+
+            return aaa;
+           // return new ContactData(firstName, lastName);
+          //  {
+         //       Address = address,
+         //       HomePhone = homePhone,
+         //       MobilePhone = mobilePhone,
+         //       WorkPhone = workPhone,
+         //       Home = home
+         //   };
+        }
+
         public ContactData  GetContacInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
             InitContactModificationn(0);
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string middlName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string nickName = driver.FindElement(By.Name("nickname")).GetAttribute("value");
+            string tittle = driver.FindElement(By.Name("title")).GetAttribute("value");
+            string company = driver.FindElement(By.Name("company")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
-            string home = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string faxPhone = driver.FindElement(By.Name("fax")).GetAttribute("value");
+            string email  = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string em2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string em3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+            string homePage = driver.FindElement(By.Name("homepage")).GetAttribute("value");
+            string address2 = driver.FindElement(By.Name("address2")).GetAttribute("value");
+            string home = driver.FindElement(By.Name("phone2")).GetAttribute("value");
+            string notes = driver.FindElement(By.Name("notes")).GetAttribute("value");
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
-                Home = home,
+                Middlname = middlName,
+                 Nickname = nickName,
+                 Tittle = tittle,
+                 Company = company,
+                HomePhone = homePhone,
                 MobilePhone = mobilePhone,
-                WorkPhone = workPhone
+                WorkPhone = workPhone,
+                FaxPhone = faxPhone,
+                HomePage = homePage,
+                Address2 = address2,
+                Home = home,
+                Email = email,
+                Em2 = em2,
+                Em3 = em3
+
             };
         }
 
