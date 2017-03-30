@@ -112,8 +112,9 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return "Firstname=" + Firstname;
-             
+            //return "Firstname=" + Firstname;
+            return "Firstname=" + Firstname+"Lastname="+Lastname;
+
         }
 
 
@@ -123,7 +124,13 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            return Firstname.CompareTo(other.Firstname);
+             string aaaa = other.Firstname + other.Lastname;
+             string bbbb = Firstname + Lastname;
+
+
+            //return Firstname.CompareTo(other.Firstname)
+           
+            return  bbbb.CompareTo(aaaa);
         }
 
     }
