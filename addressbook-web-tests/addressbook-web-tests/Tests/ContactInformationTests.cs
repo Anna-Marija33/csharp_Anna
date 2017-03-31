@@ -32,13 +32,9 @@ namespace WebAddressbookTests
         public void ContactKartInformation()
         {
             ContactData fromKart = app.Contacts.GetContactInformationFromKart(0);
-            System.Console.Out.Write("firstname=");
-            //      ContactData fromForm = app.Contacts.GetContacInformationFromEditForm(0);
+        //    ContactData fromForm = app.Contacts.GetContacInformationFromEditForm(0);
 
-            //      Assert.AreEqual(fromKart, fromForm);
-            //       Assert.AreEqual(fromKart.Address, fromForm.Address);
-            //      Assert.AreEqual(fromKart.AllPhones, fromForm.AllPhones);
-            //      Assert.AreEqual(fromKart.AllEmails, fromForm.AllEmails);
+        //    Assert.AreEqual(fromKart.AllStroka, fromForm.AllStroka);
         }
 
 

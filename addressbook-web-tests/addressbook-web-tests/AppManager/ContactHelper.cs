@@ -198,27 +198,26 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             InitContactModificationnn(0);
-            ContactData aaa = new  ContactData("aaa", "ccc");
 
-            //string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
-            // string nickName = driver.FindElement(By.Name("nickname")).GetAttribute("value");
-            //string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
-            //System.Console.Out.Write("firstname="+firstName);
-            //  string address = driver.FindElement(By.Name("address")).GetAttribute("value");
-            //  string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
-            //  string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
-            //  string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            //  string home = driver.FindElement(By.Name("phone2")).GetAttribute("value");
+           ICollection<IWebElement> elements = driver.FindElements(By.Id("content"));
+           
 
-            return aaa;
-           // return new ContactData(firstName, lastName);
+            string allstroka = "";
+          //  foreach (IWebElement element in elements)
           //  {
-         //       Address = address,
-         //       HomePhone = homePhone,
-         //       MobilePhone = mobilePhone,
-         //       WorkPhone = workPhone,
-         //       Home = home
-         //   };
+                //   IList<IWebElement> cells = elements.FindElements(By.TagName("br"));
+                //string  aaaa = element.FindElement(By.TagName("b")).Text;
+           //     allstroka = allstroka + element.Text;
+                // int poz1 = aaaa.IndexOf(" ");
+                //string firstname=               
+                
+               // System.Console.Out.Write("aaaa=" + aaaa+ "poz="+poz1);
+                
+                //     contactCache.Add(new ContactData(firstname, lastname) { Id = element.FindElement(By.TagName("input")).GetAttribute("id") });
+
+         //   }
+          //  System.Console.Out.Write("aaaa=" + allstroka );
+            return new ContactData("aaaaa", "bbbbb")  {   AllStroka = allstroka  };
         }
 
         public ContactData  GetContacInformationFromEditForm(int index)

@@ -38,6 +38,7 @@ namespace WebAddressbookTests
         public string Address2 { get; set; }
         public string Id { get; set; }
         public string Home { get; set; }
+        public string Notes { get; set; }
 
         public string AllPhones
         {
@@ -75,6 +76,30 @@ namespace WebAddressbookTests
             set
             {
                 allEmails = value;
+            }
+        }
+
+
+        public string AllStroka
+        {
+            get
+            {
+                if (AllStroka != null)
+                {
+                    return AllStroka;
+                }
+                else
+                {
+                    return (Firstname + Middlname + Lastname).Trim();
+                    //+ CleanUp(Nickname) + CleanUp(Tittle)
+                    //    + CleanUp(Company) + CleanUp(Address) + CleanUp(HomePhone) + CleanUp(HomePhone) + CleanUp(MobilePhone)
+                    //    + CleanUp(WorkPhone) + CleanUp(FaxPhone) + CleanUp(FaxPhone) + CleanUp(Email) + CleanUp(Em2)
+                    //    + CleanUp(Em3) + CleanUp(HomePage) + CleanUp(Address2) + CleanUp(Home) + CleanUp(Notes));
+                }
+            }
+            set
+            {
+                AllStroka = value;
             }
         }
 
