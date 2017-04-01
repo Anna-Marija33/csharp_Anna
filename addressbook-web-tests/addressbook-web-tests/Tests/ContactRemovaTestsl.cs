@@ -23,24 +23,31 @@ namespace WebAddressbookTests
             List<ContactData> oldcont = app.Contacts.GetContactList();
             //удалить запись
             app.Contacts.Removal(0);
-            Assert.AreEqual(oldcont.Count - 1, app.Contacts.GetContactCount());
 
-            List<ContactData> newcont = app.Contacts.GetContactList();
-            
 
-            ContactData ForRemoving = oldcont[0];
-            oldcont.RemoveAt(0);
+           // int oldzap  = oldcont.Count - 1;
+           // int newzap = app.Contacts.GetContactCount();
 
-            Assert.AreEqual(oldcont, newcont);
+          // System.Console.Out.Write("oldzap=" + oldzap + " newzap = "+ newzap );
+
+             Assert.AreEqual(oldcont.Count - 1, app.Contacts.GetContactCount());
+
+             List<ContactData> newcont = app.Contacts.GetContactList();
+
+
+             ContactData ForRemoving = oldcont[0];
+             oldcont.RemoveAt(0);
+
+             Assert.AreEqual(oldcont, newcont);
 
             foreach (ContactData contact in newcont)
-            {
-                Assert.AreNotEqual(contact.Id, ForRemoving.Id);
+             {
+                 Assert.AreNotEqual(contact.Id, ForRemoving.Id);
             }
 
         }
 
 
-        
+
     }
 }

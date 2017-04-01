@@ -11,6 +11,7 @@ namespace WebAddressbookTests
     {
         private string allPhones;
         private string allEmails;
+        private string allStroka;
 
         public ContactData(string firstname, string lastname)
         {
@@ -84,24 +85,50 @@ namespace WebAddressbookTests
         {
             get
             {
-                if (AllStroka != null)
+                if (allStroka != null)
                 {
-                    return AllStroka;
+                    return allStroka;
                 }
                 else
                 {
-                    return (Firstname + Middlname + Lastname).Trim();
-                    //+ CleanUp(Nickname) + CleanUp(Tittle)
-                    //    + CleanUp(Company) + CleanUp(Address) + CleanUp(HomePhone) + CleanUp(HomePhone) + CleanUp(MobilePhone)
-                    //    + CleanUp(WorkPhone) + CleanUp(FaxPhone) + CleanUp(FaxPhone) + CleanUp(Email) + CleanUp(Em2)
-                    //    + CleanUp(Em3) + CleanUp(HomePage) + CleanUp(Address2) + CleanUp(Home) + CleanUp(Notes));
-                }
+                    allStroka = (Preobr(Firstname + " " + Middlname + " " + Lastname) + Preobr(Nickname) + Preobr(Tittle) + Preobr(Company) + Preobr(Address)
+                        + "\r\n" + Preobr("H: " + HomePhone) + Preobr("M: " + MobilePhone) + Preobr("W: " + WorkPhone) + Preobr("F: " + FaxPhone) + "\r\n" + Preobr(Email)
+                        + Preobr(Em2) + Preobr(Em3) + Preobr("Homepage:" + "\r\n" + HomePage) + "\r\n" + "\r\n" + Preobr(Address2) + "\r\n"
+                        + Preobr("P: " + Home) + "\r\n" + Preobr(Notes));
+                   
+                    while (allStroka.LastIndexOf("\r\n") == allStroka.Length-2)
+                        {
+                        allStroka = allStroka.Remove(allStroka.Length - 2);
+           
+                       }
+
+                    return allStroka;
+                 }
             }
             set
             {
-                AllStroka = value;
+                allStroka = value;
             }
         }
+
+
+        private string Preobr(string kusok)
+        {
+            kusok = kusok.Trim();
+           
+            if((kusok.Substring(kusok.IndexOf(":") + 1)).Trim()== "")
+           {
+                return "";
+            }
+
+            if (kusok != "")
+            {
+                kusok = kusok + "\r\n";
+            }
+                        
+            return kusok;
+        }
+
 
         private string CleanUp(string phone)
         {

@@ -60,11 +60,9 @@ namespace WebAddressbookTests
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
                      string firstname = cells[2].Text;
                      string lastname = cells[1].Text;
-                    // string id = cells[1].Text;
-                    //contactCache.Add(new ContactData(firstname));
-                    //contactCache.Add(new ContactData(firstname) {Id=id }); 
+                   
                     contactCache.Add(new ContactData(firstname, lastname) { Id = element.FindElement(By.TagName("input")).GetAttribute("id") });
-                    //contactCache.Add(new ContactData (element.Text) { Id = element.FindElement(By.TagName("input")).GetAttribute("id") });
+                    
                 }
             }
             
@@ -198,25 +196,10 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             InitContactModificationnn(0);
-
-           ICollection<IWebElement> elements = driver.FindElements(By.Id("content"));
-           
-
-            string allstroka = "";
-          //  foreach (IWebElement element in elements)
-          //  {
-                //   IList<IWebElement> cells = elements.FindElements(By.TagName("br"));
-                //string  aaaa = element.FindElement(By.TagName("b")).Text;
-           //     allstroka = allstroka + element.Text;
-                // int poz1 = aaaa.IndexOf(" ");
-                //string firstname=               
-                
-               // System.Console.Out.Write("aaaa=" + aaaa+ "poz="+poz1);
-                
-                //     contactCache.Add(new ContactData(firstname, lastname) { Id = element.FindElement(By.TagName("input")).GetAttribute("id") });
-
-         //   }
-          //  System.Console.Out.Write("aaaa=" + allstroka );
+                    
+            string allstroka = driver.FindElement(By.Id("content")).Text;
+         
+           //System.Console.Out.Write("aaaa=" + allstroka );
             return new ContactData("aaaaa", "bbbbb")  {   AllStroka = allstroka  };
         }
 
@@ -259,7 +242,8 @@ namespace WebAddressbookTests
                 Home = home,
                 Email = email,
                 Em2 = em2,
-                Em3 = em3
+                Em3 = em3,
+                Notes = notes
 
             };
         }
