@@ -52,7 +52,7 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return "Name=" + Name;
+            return "Name=" + Name + "\nHeadre="+Header + "\nFooter=" + Footer;
         }
 
 
