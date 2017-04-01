@@ -37,7 +37,7 @@ namespace WebAddressbookTests
         public ContactHelper ModifyCon(int p, ContactData contact)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModification(p);
+            InitContactModification(p,0);
             FillContactForm(contact);
             SubmitContactModification(p);
             return this;
@@ -139,27 +139,49 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification(int index)
+        public ContactHelper InitContactModification(int index, int peredacha)
         {
-           driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (index + 1) + "]")).Click();
-            return this;
-        }
+            if (peredacha == 0)
+            {
+                driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (index + 1) + "]")).Click();
+                return this;
+            }
 
-        public ContactHelper InitContactModificationn(int index)
-        {
-            driver.FindElements(By.Name("entry"))[index].
-                FindElements(By.TagName("td"))[7].
-                FindElement(By.TagName("a")).Click();
-            return this;
-        }
+            if (peredacha == 1)
+            {
+                //System.Console.Out.Write("index = "+ index + "peredacha="+peredacha);
+                driver.FindElements(By.Name("entry"))[index].
+              FindElements(By.TagName("td"))[7].
+              FindElement(By.TagName("a")).Click();
+                return this;
+            }
 
-        public ContactHelper InitContactModificationnn(int index)
-        {
-            driver.FindElements(By.Name("entry"))[index].
+            if (peredacha == 2)
+            {
+                driver.FindElements(By.Name("entry"))[index].
                 FindElements(By.TagName("td"))[6].
                 FindElement(By.TagName("a")).Click();
+                return this;
+            }
             return this;
         }
+
+
+    //    public ContactHelper InitContactModificationn(int index)
+    //    {
+    //        driver.FindElements(By.Name("entry"))[index].
+    //            FindElements(By.TagName("td"))[7].
+    //            FindElement(By.TagName("a")).Click();
+     //       return this;
+    //    }
+
+    //    public ContactHelper InitContactModificationnn(int index)
+    //    {
+    //        driver.FindElements(By.Name("entry"))[index].
+    //            FindElements(By.TagName("td"))[6].
+    //            FindElement(By.TagName("a")).Click();
+   //         return this;
+    //    }
 
         public ContactHelper SubmitContactModification(int index)
         {
@@ -195,7 +217,7 @@ namespace WebAddressbookTests
         public ContactData GetContactInformationFromKart(int index)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModificationnn(0);
+            InitContactModification(0,2);
                     
             string allstroka = driver.FindElement(By.Id("content")).Text;
          
@@ -206,7 +228,7 @@ namespace WebAddressbookTests
         public ContactData  GetContacInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModificationn(0);
+            InitContactModification(0 , 1);
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string middlName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");

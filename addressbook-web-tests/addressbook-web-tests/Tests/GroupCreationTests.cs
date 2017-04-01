@@ -30,7 +30,8 @@ namespace WebAddressbookTests
 
        
 
-        [Test, TestCaseSource("RandomGroupDateProvider")]
+        [Test, TestCaseSource("RandomGroupDataProvider")]
+
         public void GroupCreationTest(GroupData group)
         {
            

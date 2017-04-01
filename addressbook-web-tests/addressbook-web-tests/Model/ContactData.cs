@@ -91,12 +91,12 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    allStroka = (Preobr(Firstname + " " + Middlname + " " + Lastname) + Preobr(Nickname) + Preobr(Tittle) + Preobr(Company) + Preobr(Address)
+                    allStroka = (Preobr(Firstname + " " + Middlname + " " + Lastname) + Preobr(Nickname.Trim()) + Preobr(Tittle) + Preobr(Company) + Preobr(Address)
                         + "\r\n" + Preobr("H: " + HomePhone) + Preobr("M: " + MobilePhone) + Preobr("W: " + WorkPhone) + Preobr("F: " + FaxPhone) + "\r\n" + Preobr(Email)
                         + Preobr(Em2) + Preobr(Em3) + Preobr("Homepage:" + "\r\n" + HomePage) + "\r\n" + "\r\n" + Preobr(Address2) + "\r\n"
                         + Preobr("P: " + Home) + "\r\n" + Preobr(Notes));
                    
-                    while (allStroka.LastIndexOf("\r\n") == allStroka.Length-2)
+                    while (allStroka.LastIndexOf("\r\n") == allStroka.Length-2)/// отрезать с хвоста переводы строк если там пустые строки шли
                         {
                         allStroka = allStroka.Remove(allStroka.Length - 2);
            
@@ -115,13 +115,15 @@ namespace WebAddressbookTests
         private string Preobr(string kusok)
         {
             kusok = kusok.Trim();
-           
-            if((kusok.Substring(kusok.IndexOf(":") + 1)).Trim()== "")
+            kusok = kusok.Replace("  ", " ");  //Заменить два пробела на один если миддлнейм пустой был
+
+
+            if ((kusok.Substring(kusok.IndexOf(":") + 1)).Trim()== "") // это если телефон пустой то надписи тоже стереть
            {
                 return "";
             }
 
-            if (kusok != "")
+            if (kusok != "") // а если не пустая строка добавить перевод каретки
             {
                 kusok = kusok + "\r\n";
             }
@@ -136,7 +138,7 @@ namespace WebAddressbookTests
             {
                 return "";
             }
-           //return phone.Replace(" ", "").Replace("-", "").Replace("(","").Replace(")", "")+"\r\n";
+           //return .Replace("-", "").Replace("(","").Replace(")", "")+"\r\n";
             return Regex.Replace(phone, "[- ()]", "") + "\r\n";
         }
 
