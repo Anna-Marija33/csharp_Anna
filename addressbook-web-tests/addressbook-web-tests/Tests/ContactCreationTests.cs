@@ -10,16 +10,33 @@ namespace WebAddressbookTests
     [TestFixture]
     public class ContactCreationTests: AuthTestBase
     {
-        [Test]
-        public void ContactCreationTest()
+
+        public static IEnumerable<ContactData> RandomContactDataProvider()
         {
-            ContactData contact = new ContactData("aaa","ccc");
-            contact.Middlname = "bbb";
-//            contact.Lastname = "ccc";
-            contact.Nickname = "ddd";
-            contact.Address = "ggg";
-            contact.HomePhone = "hhhh";
-            contact.Email = "eee";
+            List<ContactData> contacts = new List<ContactData>();
+            for (int i = 0; i < 5; i++)
+            {
+                contacts.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30))
+                    {
+                    Middlname = GenerateRandomString(30),
+                    Nickname = GenerateRandomString(30)
+                });
+            }
+
+            return contacts;
+        }
+        
+
+
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreationTest(ContactData contact)
+        {
+  //          ContactData contact = new ContactData("aaa","ccc");
+  //          contact.Middlname = "bbb";
+  //          contact.Nickname = "ddd";
+  //          contact.Address = "ggg";
+  //          contact.HomePhone = "hhhh";
+ //           contact.Email = "eee";
 
             List<ContactData> oldcont = app.Contacts.GetContactList();
 
@@ -56,23 +73,6 @@ namespace WebAddressbookTests
         }
 
 
-        [Test]
-        public void EmptyContactCreationTest()
-        {
-            ContactData contact = new ContactData("","");
-
-            List<ContactData> oldcont = app.Contacts.GetContactList();
-
-            app.Contacts.CreateCont(contact);
-
-            Assert.AreEqual(oldcont.Count + 1, app.Contacts.GetContactCount());
-
-            List<ContactData> newcont = app.Contacts.GetContactList();
-
-            oldcont.Add(contact);
-            oldcont.Sort();
-            newcont.Sort();
-            Assert.AreEqual(oldcont, newcont);
-        }
+     
     }
 }
