@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
@@ -25,18 +26,32 @@ namespace WebAddressbookTests
 
             return contacts;
         }
-        
 
 
-        [Test, TestCaseSource("RandomContactDataProvider")]
+
+        public static IEnumerable<ContactData> ContactDataFromFile()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            string[] lines = File.ReadAllLines(@"contacts.csv");
+            foreach (string l in lines)
+            {
+                string[] parts = l.Split(',');
+                contacts.Add(new ContactData(parts[0], parts[1])
+                {
+                    Middlname = parts[2],
+                    Nickname = parts[3]
+                });
+            }
+            return contacts;
+        }
+
+
+
+
+        [Test, TestCaseSource("ContactDataFromFile")]
         public void ContactCreationTest(ContactData contact)
         {
-  //          ContactData contact = new ContactData("aaa","ccc");
-  //          contact.Middlname = "bbb";
-  //          contact.Nickname = "ddd";
-  //          contact.Address = "ggg";
-  //          contact.HomePhone = "hhhh";
- //           contact.Email = "eee";
+  
 
             List<ContactData> oldcont = app.Contacts.GetContactList();
 

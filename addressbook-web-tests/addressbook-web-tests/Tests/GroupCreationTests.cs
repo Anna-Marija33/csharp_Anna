@@ -60,7 +60,7 @@ namespace WebAddressbookTests
         {
             List<GroupData> groups = new List<GroupData>();
             Exel.Application app = new Exel.Application();
-            Exel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"gropus.xlsx"));
+            Exel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"groups.xlsx"));
             Exel.Worksheet sheet = wb.ActiveSheet;
             Exel.Range range = sheet.UsedRange;
             for (int i = 1; i <= range.Rows.Count; i++)
