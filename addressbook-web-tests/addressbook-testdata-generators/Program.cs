@@ -90,7 +90,7 @@ namespace addressbook_testdata_generators
                         }
                         else if (format == "xml")
                         {
-                           // System.Console.Out.Write("filename =" + filename+ "  format="+format);
+                           
                             writeContactsToXmlFile(contacts, writerc);
                         }
                         else if (format == "json")
@@ -162,6 +162,7 @@ namespace addressbook_testdata_generators
          static void writeContactsToJsonFile(List<ContactData> contacts, StreamWriter writer)
         {
             writer.Write(JsonConvert.SerializeObject(contacts, Newtonsoft.Json.Formatting.Indented));
+         
         }
 
         static void writeGroupsToExelFile(List<GroupData> groups, string filename)

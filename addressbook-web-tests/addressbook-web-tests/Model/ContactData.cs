@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using System.Xml.Serialization;
+
 
 namespace WebAddressbookTests
 {
@@ -18,6 +21,12 @@ namespace WebAddressbookTests
             Firstname = firstname;
             Lastname = lastname;
 
+        }
+
+
+        public ContactData()
+        {
+           
         }
 
 
@@ -80,6 +89,7 @@ namespace WebAddressbookTests
             }
         }
 
+        [JsonIgnore]
 
         public string AllStroka
         {
