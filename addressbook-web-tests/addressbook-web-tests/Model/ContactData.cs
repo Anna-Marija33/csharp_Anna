@@ -89,7 +89,7 @@ namespace WebAddressbookTests
             }
         }
 
-        [JsonIgnore]
+ //       [JsonIgnore, XmlIgnore]
 
         public string AllStroka
         {
@@ -124,20 +124,22 @@ namespace WebAddressbookTests
 
         private string Preobr(string kusok)
         {
-            kusok = kusok.Trim();
-            kusok = kusok.Replace("  ", " ");  //Заменить два пробела на один если миддлнейм пустой был
-
-
-            if ((kusok.Substring(kusok.IndexOf(":") + 1)).Trim()== "") // это если телефон пустой то надписи тоже стереть
-           {
-                return "";
-            }
-
-            if (kusok != "") // а если не пустая строка добавить перевод каретки
+            if (kusok != null)
             {
-                kusok = kusok + "\r\n";
-            }
-                        
+                kusok = kusok.Trim();
+                kusok = kusok.Replace("  ", " ");  //Заменить два пробела на один если миддлнейм пустой был
+
+
+                if ((kusok.Substring(kusok.IndexOf(":") + 1)).Trim() == "") // это если телефон пустой то надписи тоже стереть
+                {
+                    return "";
+                }
+
+                if (kusok != "") // а если не пустая строка добавить перевод каретки
+                {
+                    kusok = kusok + "\r\n";
+                }
+            }            
             return kusok;
         }
 

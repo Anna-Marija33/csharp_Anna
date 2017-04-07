@@ -33,10 +33,10 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        public static IEnumerable<GroupData> GroupDataFromXmlFile()
+        public static IEnumerable<GroupData> GroupDataFromCsvFile()
         {
             List<GroupData> groups = new List<GroupData>();
-            string[] lines = File.ReadAllLines(@"groups.xml");
+            string[] lines = File.ReadAllLines(@"groups.csv");
             foreach (string l in lines)
             {
                 string[] parts = l.Split(',');
@@ -78,14 +78,14 @@ namespace WebAddressbookTests
 
         }
 
-        public static IEnumerable<GroupData> GroupDataFromCsvFile()
+        public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
             
             return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
 
         }
 
-        [Test, TestCaseSource("GroupDataFromExelFile")]
+        [Test, TestCaseSource("GroupDataFromXmlFile")]
 
         public void GroupCreationTest(GroupData group)
         {

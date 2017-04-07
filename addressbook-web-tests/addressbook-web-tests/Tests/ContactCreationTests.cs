@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Exel = Microsoft.Office.Interop.Excel;
 
 namespace WebAddressbookTests
 {
@@ -29,7 +32,21 @@ namespace WebAddressbookTests
 
 
 
-        public static IEnumerable<ContactData> ContactDataFromFile()
+        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<ContactData>>(
+               File.ReadAllText(@"contacts.json"));
+
+        }
+
+        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        {
+            return (List<ContactData>)new XmlSerializer(typeof(List<ContactData>)).Deserialize(new StreamReader(@"contacts.xml"));
+        }
+
+
+
+        public static IEnumerable<ContactData> ContactDataFromCsvFile()
         {
             List<ContactData> contacts = new List<ContactData>();
             string[] lines = File.ReadAllLines(@"contacts.csv");
@@ -46,9 +63,31 @@ namespace WebAddressbookTests
         }
 
 
+        public static IEnumerable<ContactData> ContactDataFromExelFile()
+        {
+            List<ContactData> groups = new List<ContactData>();
+            Exel.Application app = new Exel.Application();
+            Exel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"contacts.xlsx"));
+            Exel.Worksheet sheet = wb.ActiveSheet;
+            Exel.Range range = sheet.UsedRange;
+            for (int i = 1; i <= range.Rows.Count; i++)
+            {
+                groups.Add(new ContactData()
+                {
+                    Firstname = range.Cells[i, 1].value,
+                    Lastname = range.Cells[i, 2].value,
+                    Middlname = range.Cells[i, 3].value,
+                    Nickname = range.Cells[i, 3].value
+                });
+            }
+            wb.Close();
+            app.Visible = false;
+            return groups;
+
+        }
 
 
-        [Test, TestCaseSource("ContactDataFromFile")]
+        [Test, TestCaseSource("ContactDataFromExelFile")]
         public void ContactCreationTest(ContactData contact)
         {
   
