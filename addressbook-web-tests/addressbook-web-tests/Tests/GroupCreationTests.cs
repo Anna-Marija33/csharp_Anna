@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using System.Xml;
 using System.Xml.Serialization;
@@ -85,18 +86,18 @@ namespace WebAddressbookTests
 
         }
 
-        [Test, TestCaseSource("GroupDataFromXmlFile")]
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
 
         public void GroupCreationTest(GroupData group)
         {
-           
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            List<GroupData> oldGroups = GroupData.GetAll();//app.Groups.GetGroupList();
 
             app.Groups.Create(group);
                        
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();// контейнер или коллекция то есть объект который хранит набор других объектов
+            List<GroupData> newGroups = GroupData.GetAll();//app.Groups.GetGroupList();// контейнер или коллекция то есть объект который хранит набор других объектов
             //groups.Count //количество элементов в этом списке
             oldGroups.Add(group);
             oldGroups.Sort();
@@ -128,6 +129,23 @@ namespace WebAddressbookTests
 
         }
 
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+
+           start = DateTime.Now;
+
+            List<GroupData> fromDB = GroupData.GetAll();
+
+
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
 
     }
 }
