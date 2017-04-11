@@ -80,6 +80,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AddressBookDB.cs" />
+    <Compile Include="GroupTestBase.cs" />
     <Compile Include="Tests\ContactInformationTests.cs" />
     <Compile Include="SearchTests.cs" />
     <Compile Include="Tests\AuthTestBase.cs" />

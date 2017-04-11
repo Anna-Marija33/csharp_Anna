@@ -9,7 +9,7 @@ namespace WebAddressbookTests
 {
     public class AddressBookDB: LinqToDB.Data.DataConnection
     {
-        public AddressBookDB() : base("Addressbook") { }
+        public AddressBookDB() : base("AddressBook") { }
 
         public ITable<GroupData> Groups { get { return GetTable<GroupData>(); } }
 
