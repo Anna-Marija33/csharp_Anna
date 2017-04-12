@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
+using LinqToDB.Mapping;
 
 
 namespace WebAddressbookTests
 {
+    [Table(Name="addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
@@ -29,9 +31,11 @@ namespace WebAddressbookTests
            
         }
 
-
+        [Column(Name="firstname")]
         public string Firstname { get; set; }
         public string Middlname { get; set; }
+
+        [Column(Name = "lastname")]
         public string Lastname { get; set; }
         public string Nickname { get; set; }
         public string Tittle { get; set; }
@@ -46,6 +50,8 @@ namespace WebAddressbookTests
         public string Em3 { get; set; }
         public string HomePage { get; set; }
         public string Address2 { get; set; }
+
+        [Column(Name = "id"),PrimaryKey]
         public string Id { get; set; }
         public string Home { get; set; }
         public string Notes { get; set; }
@@ -197,6 +203,15 @@ namespace WebAddressbookTests
             //return Firstname.CompareTo(other.Firstname)
            
             return  bbbb.CompareTo(aaaa);
+        }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts select c).ToList();
+            }
+
         }
 
     }

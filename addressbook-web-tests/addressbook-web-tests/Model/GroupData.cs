@@ -27,10 +27,10 @@ namespace WebAddressbookTests
         [Column(Name = "group_header")]
         public string Header { get; set; }
 
-        [Column(Name = "group_footer ")]
+        [Column(Name = "group_footer")]
         public string Footer { get; set; }
 
-        [Column(Name = "group_id "), PrimaryKey, Identity]
+        [Column(Name = "group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
 
 
@@ -82,7 +82,15 @@ namespace WebAddressbookTests
 
         }
 
-
+        public List<ContactData> GetContacts()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts 
+                        from gcr in db.GCR.Where(p=> p.GroupId==Id && p.ContactId == c.Id)
+                        select c).Distinct().ToList();
+            }
+        }
 
     }
 }

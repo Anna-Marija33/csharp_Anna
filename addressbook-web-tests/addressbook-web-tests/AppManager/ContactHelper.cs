@@ -78,7 +78,7 @@ namespace WebAddressbookTests
         public ContactHelper Removal(int p)
         {
             manager.Navigator.OpenHomePage();
-            SelectContact(p);
+            SelectContact();
             RemoveContact();
             return this;
         }
@@ -277,6 +277,35 @@ namespace WebAddressbookTests
             Match m = new Regex(@"\d+").Match(text);
             return Int32.Parse(m.Value); 
         }
+
+   //     public void AddContactToGroup(ContactData contact, GroupData group)
+  //      {
+ //           manager.Navigator.GoToHomePage();
+ //           ClearGroupFilter();
+ //           SelectContactt(contact.Id);
+ //           SelectGroupToAdd(group.Name);
+ //           CommitAddingContactToGroup();
+ //       }
+
+  //      private void CommitAddingContactToGroup()
+  //      {
+  //          driver.FindElement(By.Name("add")).Click();
+  //      }
+
+   //     private void SelectGroupToAdd(string name)
+   //     {
+   //         new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+   //     }
+
+   //     private void ClearGroupFilter()
+   //     {
+   //         new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+   //     }
+
+    //    private void SelectContactt(string contactId)
+   //     {
+   //         driver.FindElement(By.Id(contactId));
+   //     }
 
     }
 }

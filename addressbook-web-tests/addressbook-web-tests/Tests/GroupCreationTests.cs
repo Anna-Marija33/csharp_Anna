@@ -15,14 +15,14 @@ using Exel = Microsoft.Office.Interop.Excel;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests: GroupTestBase
+    public class GroupCreationTests : GroupTestBase
     {
 
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
             List<GroupData> groups = new List<GroupData>();
 
-            for (int i = 0; i < 5; i++ )
+            for (int i = 0; i < 5; i++)
             {
                 groups.Add(new GroupData(GenerateRandomString(30))
                 {
@@ -53,7 +53,7 @@ namespace WebAddressbookTests
         public static IEnumerable<GroupData> GroupDataFromJsonFile()
         {
             return JsonConvert.DeserializeObject<List<GroupData>>(
-               File.ReadAllText(@"groups.json") );
+               File.ReadAllText(@"groups.json"));
 
         }
 
@@ -68,7 +68,7 @@ namespace WebAddressbookTests
             {
                 groups.Add(new GroupData()
                 {
-                    Name = range.Cells[i,1].value,
+                    Name = range.Cells[i, 1].value,
                     Footer = range.Cells[i, 2].value,
                     Header = range.Cells[i, 3].value
                 });
@@ -81,8 +81,8 @@ namespace WebAddressbookTests
 
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
-            
-            return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
+
+            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
 
         }
 
@@ -95,7 +95,7 @@ namespace WebAddressbookTests
             List<GroupData> oldGroups = GroupData.GetAll();//app.Groups.GetGroupList();
 
             app.Groups.Create(group);
-                       
+
 
             List<GroupData> newGroups = GroupData.GetAll();//app.Groups.GetGroupList();// контейнер или коллекция то есть объект который хранит набор других объектов
             //groups.Count //количество элементов в этом списке
@@ -105,7 +105,7 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups, newGroups);
         }
 
-      
+
 
 
         [Test]
@@ -129,23 +129,32 @@ namespace WebAddressbookTests
 
         }
 
-        [Test]
-        public void TestDBConnectivity()
-        {
-            DateTime start = DateTime.Now;
-            List<GroupData> fromUi = app.Groups.GetGroupList();
-            DateTime end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
+       // [Test]
+        //     public void TestDBConnectivity()
+        //     {
+        //         DateTime start = DateTime.Now;
+        //         List<GroupData> fromUi = app.Groups.GetGroupList();
+        //         DateTime end = DateTime.Now;
+        //         System.Console.Out.WriteLine(end.Subtract(start));
+
+        //
+        //           start = DateTime.Now;
+
+        //        List<GroupData> fromDB = GroupData.GetAll();
 
 
-           start = DateTime.Now;
+        //        end = DateTime.Now;
+        //        System.Console.Out.WriteLine(end.Subtract(start));
+        //    }
 
-            List<GroupData> fromDB = GroupData.GetAll();
-
-
-            end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
-        }
+                [Test]
+             public void TestDBConnectivity()
+             {
+                foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
+                {
+                System.Console.Out.WriteLine(contact);
+                }
+             }
 
     }
 }
