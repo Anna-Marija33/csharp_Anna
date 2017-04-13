@@ -19,8 +19,8 @@ namespace WebAddressbookTests
            app.Contacts.Analis();
            
             ///модифицировать запись
-            ContactData contacta = new ContactData("DA","NET");
-            contacta.Lastname = null;
+            ContactData contacta = new ContactData("aga","ugu");
+            contacta.Lastname = "jejeje";
             contacta.Middlname = null;
             contacta.Lastname = null;
             contacta.Nickname = null;
@@ -28,26 +28,33 @@ namespace WebAddressbookTests
             contacta.HomePhone = null;
             contacta.Email = null;
 
-            List<ContactData> oldcont = app.Contacts.GetContactList();
-            ContactData oldcontacta = oldcont[0];
+            List<ContactData> oldcont = ContactData.GetAll();
+            ContactData ForModify = oldcont[0];
 
-            app.Contacts.ModifyCon(0, contacta);
+          
+            System.Console.Out.WriteLine("lastname=" + contacta.Lastname);
+
+            app.Contacts.ModifyCon(ForModify, contacta);
+
+            
 
             Assert.AreEqual(oldcont.Count, app.Contacts.GetContactCount());
 
-            List<ContactData> newcont = app.Contacts.GetContactList();
+            List<ContactData> newcont = ContactData.GetAll();
             oldcont[0].Firstname = contacta.Firstname;
-            //oldcont[0].Lastname = contacta.Lastname;
+           
             oldcont.Sort();
             newcont.Sort();
             Assert.AreEqual(oldcont, newcont);
 
             foreach (ContactData contact in newcont)
             {
-                if (contact.Id == oldcontacta.Id)
+               // System.Console.Out.WriteLine("index=" + ForModify.Id+ " indexbeg=" + contact.Id);
+                if (contact.Id == ForModify.Id)
                     {
+                  //  System.Console.Out.WriteLine("ravno   index=" + ForModify.Id + " indexbeg=" + contact.Id);
                     Assert.AreEqual(contacta.Firstname,contact.Firstname);
-                }
+                     }
             }
         }
     }

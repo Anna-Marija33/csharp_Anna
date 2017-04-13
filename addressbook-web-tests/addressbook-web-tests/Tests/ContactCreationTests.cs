@@ -92,14 +92,14 @@ namespace WebAddressbookTests
         {
   
 
-            List<ContactData> oldcont = app.Contacts.GetContactList();
+            List<ContactData> oldcont = ContactData.GetAll(); 
 
             app.Contacts.CreateCont(contact);
 
           
               Assert.AreEqual(oldcont.Count+1, app.Contacts.GetContactCount());
 
-              List<ContactData> newcont = app.Contacts.GetContactList();
+              List<ContactData> newcont = ContactData.GetAll(); 
            // System.Console.Out.Write("=");
 
                      oldcont.Add(contact);
