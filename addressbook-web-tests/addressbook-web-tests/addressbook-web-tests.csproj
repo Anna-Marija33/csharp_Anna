@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="AddingContactToGrouptests.cs" />
     <Compile Include="AddressBookDB.cs" />
+    <Compile Include="ContactTestBase.cs" />
     <Compile Include="GroupContactRelation.cs" />
     <Compile Include="GroupTestBase.cs" />
     <Compile Include="Tests\ContactInformationTests.cs" />
